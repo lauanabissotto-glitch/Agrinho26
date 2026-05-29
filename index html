@@ -1,3 +1,317 @@
 <html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroSustentável - Blog Oficial</title>
+    <style>
+        /* Reset de Estilos Base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f4f7f4;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Menu de Navegação (Header) */
+        header {
+            background-color: #1b4332;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #52b788;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #74c69d;
+        }
+
+        /* Banner Principal (Hero) */
+        .hero {
+            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(45, 106, 79, 0.85)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            color: #d8f3dc;
+        }
+
+        /* Container de Conteúdo em Grade (Grid) */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Seção de Artigos */
+        .posts-section h2 {
+            margin-bottom: 1.5rem;
+            color: #1b4332;
+            border-left: 5px solid #52b788;
+            padding-left: 10px;
+        }
+
+        .post-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-category {
+            display: inline-block;
+            background-color: #d8f3dc;
+            color: #1b4332;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .post-title {
+            font-size: 1.6rem;
+            color: #1b4332;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .post-excerpt {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #40916c;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .read-more:hover {
+            color: #1b4332;
+        }
+
+        /* Barra Lateral (Sidebar) */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .widget h3 {
+            color: #1b4332;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f4f7f4;
+            padding-bottom: 0.5rem;
+        }
+
+        .widget p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .category-list li a {
+            display: flex;
+            justify-content: space-between;
+            color: #2c3e50;
+            transition: color 0.2s;
+        }
+
+        .category-list li a:hover {
+            color: #40916c;
+        }
+
+        /* Rodapé (Footer) */
+        footer {
+            background-color: #1b4332;
+            color: #ffffff;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #b7e4c7;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">Agro<span>Sustentável</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Agro Forte e Meio Ambiente Sustentável</h1>
+        <p>Mostrando como a produtividade do campo e a preservação ambiental andam juntas através da tecnologia e da inovação.</p>
+    </section>
+
+    <div class="container">
+        
+        <main class="posts-section">
+            <h2>Artigos em Destaque</h2>
+
+            <article class="post-card">
+                <div class="post-content">
+                    <span class="post-category">Práticas Sustentáveis</span>
+                    <h3 class="post-title"><a href="#">O que é o Agro Sustentável e por que ele é o futuro?</a></h3>
+                    <div class="post-meta">Postado por Equipe AgroSustentável</div>
+                    <p class="post-excerpt">Descubra como o desafio global de alimentar uma população crescente encontra respostas na harmonia entre o campo e as florestas. Conheça técnicas como o plantio direto e a integração Lavoura-Pecuária-Floresta (ILPF).</p>
+                    <a href="#" class="read-more">Ler Artigo Completo →</a>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <div class="post-content">
+                    <span class="post-category">Tecnologia no Campo</span>
+                    <h3 class="post-title"><a href="#">5 Tecnologias que estão revolucionando a sustentabilidade no campo</a></h3>
+                    <div class="post-meta">Postado por Equipe AgroSustentável</div>
+                    <p class="post-excerpt">Drones, bioinsumos e sensores de alta precisão estão mudando o dia a dia dos produtores rurais. Saiba como a tecnologia se tornou a maior aliada na redução de defensivos e na economia extrema de água.</p>
+                    <a href="#" class="read-more">Ler Artigo Completo →</a>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <div class="post-content">
+                    <span class="post-category">Histórias de Sucesso</span>
+                    <h3 class="post-title"><a href="#">Case de Sucesso: Como a Fazenda Modelo aumentou a produção preservando a mata nativa</a></h3>
+                    <div class="post-meta">Postado por Equipe AgroSustentável</div>
+                    <p class="post-excerpt">Conheça a história real de recuperação de solos degradados e o respeito total às Áreas de Preservação Permanente (APPs), provando que produzir mais não significa desmatar mais.</p>
+                    <a href="#" class="read-more">Ler Artigo Completo →</a>
+                </div>
+            </article>
+        </main>
+
+        <aside>
+            <div class="widget">
+                <h3>Sobre o Blog</h3>
+                <p>Nossa missão é conectar a força do agronegócio moderno com a inteligência da preservação ambiental, gerando valor, informação de qualidade e futuro para o campo.</p>
+            </div>
+
+            <div class="widget">
+                <h3>Categorias</h3>
+                <ul class="category-list">
+                    <li><a href="#"><span>Tecnologia no Campo</span> <span>(12)</span></a></li>
+                    <li><a href="#"><span>Práticas Sustentáveis</span> <span>(18)</span></a></li>
+                    <li><a href="#"><span>Histórias de Sucesso</span> <span>(7)</span></a></li>
+                </ul>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 AgroSustentável Blog. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
 </html>
