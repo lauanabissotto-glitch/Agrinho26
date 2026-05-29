@@ -313,7 +313,380 @@
     </footer>
 
 </body>
-<!DOCTYPE html>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroSustentável - Blog Oficial</title>
+    <style>
+        /* Reset de Estilos Base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f4f7f4;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Menu de Navegação (Header) */
+        header {
+            background-color: #1b4332;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #52b788;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #74c69d;
+        }
+
+        /* Banner Principal (Hero) */
+        .hero {
+            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(45, 106, 79, 0.85)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            color: #d8f3dc;
+        }
+
+        /* Container de Conteúdo */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Controle de Abas Invisíveis por Padrão */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active-tab {
+            display: block;
+        }
+
+        /* Seção de Artigos */
+        .posts-section h2 {
+            margin-bottom: 1.5rem;
+            color: #1b4332;
+            border-left: 5px solid #52b788;
+            padding-left: 10px;
+        }
+
+        .post-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-category {
+            display: inline-block;
+            background-color: #d8f3dc;
+            color: #1b4332;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .post-title {
+            font-size: 1.6rem;
+            color: #1b4332;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .post-excerpt {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        /* Texto Completo Oculto */
+        .full-text {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #ddd;
+            color: #333;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            color: #40916c;
+            font-weight: bold;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 0;
+        }
+
+        .read-more-btn:hover {
+            color: #1b4332;
+        }
+
+        /* Aba Sobre Nós e Contato */
+        .info-page {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .info-page h2 {
+            color: #1b4332;
+            margin-bottom: 1rem;
+        }
+
+        .info-page p {
+            margin-bottom: 1rem;
+        }
+
+        /* Barra Lateral (Sidebar) */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .widget h3 {
+            color: #1b4332;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f4f7f4;
+            padding-bottom: 0.5rem;
+        }
+
+        .widget p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* Rodapé (Footer) */
+        footer {
+            background-color: #1b4332;
+            color: #ffffff;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #b7e4c7;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">Agro<span>Sustentável</span></div>
+            <nav>
+                <ul>
+                    <li><a class="nav-link active" data-tab="home-tab">Home</a></li>
+                    <li><a class="nav-link" data-tab="sobre-tab">Sobre Nós</a></li>
+                    <li><a class="nav-link" data-tab="contato-tab">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Agro Forte e Meio Ambiente Sustentável</h1>
+        <p>Mostrando como a produtividade do campo e a preservação ambiental andam juntas através da tecnologia e da inovação.</p>
+    </section>
+
+    <div class="container">
+        
+        <main>
+            <div id="home-tab" class="tab-content active-tab class posts-section">
+                <h2>Artigos em Destaque</h2>
+
+                <article class="post-card">
+                    <div class="post-content">
+                        <span class="post-category">Práticas Sustentáveis</span>
+                        <h3 class="post-title">O que é o Agro Sustentável e por que ele é o futuro?</h3>
+                        <div class="post-meta">Postado por Equipe AgroSustentável</div>
+                        <p class="post-excerpt">Descubra como o desafio global de alimentar uma população crescente encontra respostas na harmonia entre o campo e as florestas.</p>
+                        
+                        <div class="full-text">
+                            <p>Técnicas modernas como a rotação de culturas, o plantio direto na palha e a integração Lavoura-Pecuária-Floresta (ILPF) provam que é totalmente possível produzir em alto rendimento enquanto recuperamos solos degradados e poupamos recursos hídricos.</p>
+                        </div>
+                        <button class="read-more-btn" onclick="togglePost(this)">Ler Artigo Completo →</button>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-content">
+                        <span class="post-category">Tecnologia no Campo</span>
+                        <h3 class="post-title">5 Tecnologias que estão revolucionando o campo</h3>
+                        <div class="post-meta">Postado por Equipe AgroSustentável</div>
+                        <p class="post-excerpt">Drones, bioinsumos e sensores de alta precisão estão mudando o dia a dia dos produtores rurais.</p>
+                        
+                        <div class="full-text">
+                            <p>A aplicação de inteligência artificial na agricultura permite identificar pragas em tempo real, gerando uma economia massiva na aplicação de defensivos e otimizando o uso de água através de mapeamento por satélite.</p>
+                        </div>
+                        <button class="read-more-btn" onclick="togglePost(this)">Ler Artigo Completo →</button>
+                    </div>
+                </article>
+            </div>
+
+            <div id="sobre-tab" class="tab-content info-page">
+                <h2>Sobre Nós</h2>
+                <p>Nossa missão é aproximar a comunidade das discussões mais importantes sobre a produção de alimentos de forma limpa e consciente.</p>
+                <p>Acreditamos no potencial da tecnologia aliada ao respeito às leis ambientais e à biodiversidade para garantir o abastecimento global de forma sustentável.</p>
+            </div>
+
+            <div id="contato-tab" class="tab-content info-page">
+                <h2>Contato</h2>
+                <p>Tem alguma sugestão de pauta, história de sucesso ou quer anunciar conosco?</p>
+                <p>Mande um e-mail para: <strong>contato@agrosustentavel.com</strong></p>
+            </div>
+        </main>
+
+        <aside>
+            <div class="widget">
+                <h3>Sobre o Blog</h3>
+                <p>Nossa missão é conectar a força do agronegócio moderno com a inteligência da preservação ambiental.</p>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 AgroSustentável Blog. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Função 1: Alternar entre as abas do Menu Superior
+        const links = document.querySelectorAll('.nav-link');
+        const tabs = document.querySelectorAll('.tab-content');
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                // Remove a classe ativa de todos os botões do menu
+                links.forEach(l => l.classList.remove('active'));
+                // Remove a classe ativa de todas as abas
+                tabs.forEach(t => t.classList.remove('active-tab'));
+
+                // Adiciona o destaque no link clicado
+                link.classList.add('active');
+                // Mostra a aba correspondente
+                const targetTab = link.getAttribute('data-tab');
+                document.getElementById(targetTab).classList.add('active-tab');
+            });
+        });
+
+        // Função 2: Expandir/Recolher os artigos
+        function togglePost(button) {
+            const card = button.parentElement;
+            const fullText = card.querySelector('.full-text');
+            
+            if (fullText.style.display === 'block') {
+                fullText.style.display = 'none';
+                button.textContent = 'Ler Artigo Completo →';
+            } else {
+                fullText.style.display = 'block';
+                button.textContent = 'Fechar Artigo ←';
+            }
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -1061,8 +1434,6 @@
     </script>
 </body>
 </html>
-<div id="home-tab" class="tab-content active-tab class posts-section"></div>
-<div id="home-tab" class="tab-content active-tab posts-section"></div>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -1070,6 +1441,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AgroSustentável - Blog Oficial</title>
     <style>
+        /* Reset de Estilos Base */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -1083,6 +1455,12 @@
             background-color: #f4f7f4;
         }
 
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Menu de Navegação (Header) */
         header {
             background-color: #1b4332;
             color: #ffffff;
@@ -1120,7 +1498,6 @@
         nav ul li a {
             font-weight: 500;
             cursor: pointer;
-            color: #ffffff;
             transition: color 0.3s;
         }
 
@@ -1128,6 +1505,7 @@
             color: #74c69d;
         }
 
+        /* Banner Principal (Hero) */
         .hero {
             background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(45, 106, 79, 0.85)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             color: white;
@@ -1147,6 +1525,7 @@
             color: #d8f3dc;
         }
 
+        /* Container de Conteúdo */
         .container {
             max-width: 1200px;
             margin: 2rem auto;
@@ -1166,7 +1545,7 @@
             }
         }
 
-        /* Controle das Abas */
+        /* Controle de Abas Invisíveis por Padrão */
         .tab-content {
             display: none;
         }
@@ -1175,6 +1554,7 @@
             display: block;
         }
 
+        /* Seção de Artigos */
         .posts-section h2 {
             margin-bottom: 1.5rem;
             color: #1b4332;
@@ -1188,6 +1568,11 @@
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
         }
 
         .post-content {
@@ -1223,7 +1608,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Texto Expandido */
+        /* Texto Completo Oculto */
         .full-text {
             display: none;
             margin-top: 1rem;
@@ -1248,6 +1633,7 @@
             color: #1b4332;
         }
 
+        /* Aba Sobre Nós e Contato */
         .info-page {
             background-color: #ffffff;
             padding: 2rem;
@@ -1264,6 +1650,7 @@
             margin-bottom: 1rem;
         }
 
+        /* Barra Lateral (Sidebar) */
         aside {
             display: flex;
             flex-direction: column;
@@ -1289,6 +1676,7 @@
             color: #555;
         }
 
+        /* Rodapé (Footer) */
         footer {
             background-color: #1b4332;
             color: #ffffff;
@@ -1324,8 +1712,9 @@
     </section>
 
     <div class="container">
+        
         <main>
-            <div id="home-tab" class="tab-content active-tab posts-section">
+            <div id="home-tab" class="tab-content active-tab class posts-section">
                 <h2>Artigos em Destaque</h2>
 
                 <article class="post-card">
@@ -1376,6 +1765,7 @@
                 <p>Nossa missão é conectar a força do agronegócio moderno com a inteligência da preservação ambiental.</p>
             </div>
         </aside>
+
     </div>
 
     <footer>
@@ -1383,22 +1773,26 @@
     </footer>
 
     <script>
-        // Lógica de alternar abas
+        // Função 1: Alternar entre as abas do Menu Superior
         const links = document.querySelectorAll('.nav-link');
         const tabs = document.querySelectorAll('.tab-content');
 
         links.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', () => {
+                // Remove a classe ativa de todos os botões do menu
                 links.forEach(l => l.classList.remove('active'));
+                // Remove a classe ativa de todas as abas
                 tabs.forEach(t => t.classList.remove('active-tab'));
 
-                this.classList.add('active');
-                const targetTab = this.getAttribute('data-tab');
+                // Adiciona o destaque no link clicado
+                link.classList.add('active');
+                // Mostra a aba correspondente
+                const targetTab = link.getAttribute('data-tab');
                 document.getElementById(targetTab).classList.add('active-tab');
             });
         });
 
-        // Lógica de expandir texto do post
+        // Função 2: Expandir/Recolher os artigos
         function togglePost(button) {
             const card = button.parentElement;
             const fullText = card.querySelector('.full-text');
@@ -1414,5 +1808,378 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroSustentável - Blog Oficial</title>
+    <style>
+        /* Reset de Estilos Base */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background-color: #f4f7f4;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Menu de Navegação (Header) */
+        header {
+            background-color: #1b4332;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #52b788;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav ul li a {
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: #74c69d;
+        }
+
+        /* Banner Principal (Hero) */
+        .hero {
+            background: linear-gradient(rgba(27, 67, 50, 0.85), rgba(45, 106, 79, 0.85)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            color: #d8f3dc;
+        }
+
+        /* Container de Conteúdo */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Controle de Abas Invisíveis por Padrão */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active-tab {
+            display: block;
+        }
+
+        /* Seção de Artigos */
+        .posts-section h2 {
+            margin-bottom: 1.5rem;
+            color: #1b4332;
+            border-left: 5px solid #52b788;
+            padding-left: 10px;
+        }
+
+        .post-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-category {
+            display: inline-block;
+            background-color: #d8f3dc;
+            color: #1b4332;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .post-title {
+            font-size: 1.6rem;
+            color: #1b4332;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .post-excerpt {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        /* Texto Completo Oculto */
+        .full-text {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #ddd;
+            color: #333;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            color: #40916c;
+            font-weight: bold;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 0;
+        }
+
+        .read-more-btn:hover {
+            color: #1b4332;
+        }
+
+        /* Aba Sobre Nós e Contato */
+        .info-page {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .info-page h2 {
+            color: #1b4332;
+            margin-bottom: 1rem;
+        }
+
+        .info-page p {
+            margin-bottom: 1rem;
+        }
+
+        /* Barra Lateral (Sidebar) */
+        aside {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .widget {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .widget h3 {
+            color: #1b4332;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #f4f7f4;
+            padding-bottom: 0.5rem;
+        }
+
+        .widget p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* Rodapé (Footer) */
+        footer {
+            background-color: #1b4332;
+            color: #ffffff;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #b7e4c7;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">Agro<span>Sustentável</span></div>
+            <nav>
+                <ul>
+                    <li><a class="nav-link active" data-tab="home-tab">Home</a></li>
+                    <li><a class="nav-link" data-tab="sobre-tab">Sobre Nós</a></li>
+                    <li><a class="nav-link" data-tab="contato-tab">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Agro Forte e Meio Ambiente Sustentável</h1>
+        <p>Mostrando como a produtividade do campo e a preservação ambiental andam juntas através da tecnologia e da inovação.</p>
+    </section>
+
+    <div class="container">
+        
+        <main>
+            <div id="home-tab" class="tab-content active-tab class posts-section">
+                <h2>Artigos em Destaque</h2>
+
+                <article class="post-card">
+                    <div class="post-content">
+                        <span class="post-category">Práticas Sustentáveis</span>
+                        <h3 class="post-title">O que é o Agro Sustentável e por que ele é o futuro?</h3>
+                        <div class="post-meta">Postado por Equipe AgroSustentável</div>
+                        <p class="post-excerpt">Descubra como o desafio global de alimentar uma população crescente encontra respostas na harmonia entre o campo e as florestas.</p>
+                        
+                        <div class="full-text">
+                            <p>Técnicas modernas como a rotação de culturas, o plantio direto na palha e a integração Lavoura-Pecuária-Floresta (ILPF) provam que é totalmente possível produzir em alto rendimento enquanto recuperamos solos degradados e poupamos recursos hídricos.</p>
+                        </div>
+                        <button class="read-more-btn" onclick="togglePost(this)">Ler Artigo Completo →</button>
+                    </div>
+                </article>
+
+                <article class="post-card">
+                    <div class="post-content">
+                        <span class="post-category">Tecnologia no Campo</span>
+                        <h3 class="post-title">5 Tecnologias que estão revolucionando o campo</h3>
+                        <div class="post-meta">Postado por Equipe AgroSustentável</div>
+                        <p class="post-excerpt">Drones, bioinsumos e sensores de alta precisão estão mudando o dia a dia dos produtores rurais.</p>
+                        
+                        <div class="full-text">
+                            <p>A aplicação de inteligência artificial na agricultura permite identificar pragas em tempo real, gerando uma economia massiva na aplicação de defensivos e otimizando o uso de água através de mapeamento por satélite.</p>
+                        </div>
+                        <button class="read-more-btn" onclick="togglePost(this)">Ler Artigo Completo →</button>
+                    </div>
+                </article>
+            </div>
+
+            <div id="sobre-tab" class="tab-content info-page">
+                <h2>Sobre Nós</h2>
+                <p>Nossa missão é aproximar a comunidade das discussões mais importantes sobre a produção de alimentos de forma limpa e consciente.</p>
+                <p>Acreditamos no potencial da tecnologia aliada ao respeito às leis ambientais e à biodiversidade para garantir o abastecimento global de forma sustentável.</p>
+            </div>
+
+            <div id="contato-tab" class="tab-content info-page">
+                <h2>Contato</h2>
+                <p>Tem alguma sugestão de pauta, história de sucesso ou quer anunciar conosco?</p>
+                <p>Mande um e-mail para: <strong>contato@agrosustentavel.com</strong></p>
+            </div>
+        </main>
+
+        <aside>
+            <div class="widget">
+                <h3>Sobre o Blog</h3>
+                <p>Nossa missão é conectar a força do agronegócio moderno com a inteligência da preservação ambiental.</p>
+            </div>
+        </aside>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 AgroSustentável Blog. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Função 1: Alternar entre as abas do Menu Superior
+        const links = document.querySelectorAll('.nav-link');
+        const tabs = document.querySelectorAll('.tab-content');
+
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                // Remove a classe ativa de todos os botões do menu
+                links.forEach(l => l.classList.remove('active'));
+                // Remove a classe ativa de todas as abas
+                tabs.forEach(t => t.classList.remove('active-tab'));
+
+                // Adiciona o destaque no link clicado
+                link.classList.add('active');
+                // Mostra a aba correspondente
+                const targetTab = link.getAttribute('data-tab');
+                document.getElementById(targetTab).classList.add('active-tab');
+            });
+        });
+
+        // Função 2: Expandir/Recolher os artigos
+        function togglePost(button) {
+            const card = button.parentElement;
+            const fullText = card.querySelector('.full-text');
+            
+            if (fullText.style.display === 'block') {
+                fullText.style.display = 'none';
+                button.textContent = 'Ler Artigo Completo →';
+            } else {
+                fullText.style.display = 'block';
+                button.textContent = 'Fechar Artigo ←';
+            }
+        }
+    </script>
+</body>
 </html>
 </html>
