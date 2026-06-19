@@ -1,1 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agro Forte & Sustentável | Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ==================== ESTILIZAÇÃO (CSS) ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
+        :root {
+            --primary-color: #2e7d32; /* Verde Agro */
+            --secondary-color: #1565c0;
+            --dark-color: #212121;
+            --light-color: #f5f5f5;
+            --accent-color: #e65100;
+        }
+
+        body {
+            background-color: #fafafa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #555;
+            padding: 5px 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary-color);
+        }
+
+        .banner {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80') center/cover;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .banner-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .post-thumb {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 25px;
+        }
+
+        .category {
+            background-color: #e8f5e9;
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .post-content h2 {
+            margin: 15px 0;
+            font-size: 1.8rem;
+        }
+
+        .post-actions {
+            margin-top: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-action {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .btn-action:hover {
+            color: var(--primary-color);
+        }
+
+        .liked {
+            color: #e53935 !important;
+            font-weight: bold;
+        }
+
+        .widget {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .widget h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            border-bottom: 2px solid #e8f5e9;
+            padding-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        .btn-submit {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .btn-submit:hover {
+            background-color: #1b5e20;
+        }
+
+        .comment-item {
+            background: #f9f9f9;
+            padding: 10px;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fa-solid fa-leaf"></i> <span>AgroForte</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Início</a></li>
+                    <li><a href="#">Artigos</a></li>
+                    <li><a href="#">Sobre Nós</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="banner">
+        <div class="banner-content">
+            <h1>Agro Forte & Meio Ambiente Sustentável</h1>
+            <p>Conectando a tecnologia do campo com a preservação do nosso planeta.</p>
+        </div>
+    </section>
+
+    <main class="container grid-container">
+        
+        <section class="posts-section">
+            <article class="post-card">
+                <img src="https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=800&q=80" alt="Agricultura" class="post-thumb">
+                <div class="post-content">
+                    <span class="category">Tecnologia no Campo</span>
+                    <h2>Como a Agricultura de Precisão reduz o impacto ambiental</h2>
+                    <p>O uso de drones, sensores e inteligência artificial no manejo de lavouras permite a aplicação exata de insumos, evitando desperdícios e protegendo o solo e os lençóis freáticos.</p>
+                    
+                    <div class="post-actions">
+                        <button class="btn-action like-btn" onclick="toggleLike(this)">
+                            <i class="fa-regular fa-heart"></i> <span class="like-count">12</span> Curtidas
+                        </button>
+                        <button class="btn-action" onclick="focusCommentForm()">
+                            <i class="fa-regular fa-comment"></i> Comentar
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <aside class="sidebar">
+            <div class="widget">
+                <h3>Deixe sua Opinião</h3>
+                <p>O que você acha da união entre tecnologia e sustentabilidade no agro?</p>
+                
+                <form id="comment-form">
+                    <div class="form-group">
+                        <input type="text" id="username" placeholder="Seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="comment-text" rows="4" placeholder="Escreva seu comentário aqui..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Comentário</button>
+                </form>
+            </div>
+
+            <div class="widget">
+                <h3>Comentários Recentes</h3>
+                <div id="comments-container">
+                    <div class="comment-item">
+                        <strong>Carlos Silva:</strong>
+                        <p>A rotação de culturas salvou a produtividade da minha região sem esgotar o solo! Tema super necessário.</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 AgroForte Sustentável. Desenvolvido para um futuro mais verde.</p>
+    </footer>
+
+    <script>
+        function toggleLike(button) {
+            const icon = button.querySelector('i');
+            const countSpan = button.querySelector('.like-count');
+            let currentLikes = parseInt(countSpan.innerText);
+
+            if (icon.classList.contains('fa-regular')) {
+                icon.classList.replace('fa-regular', 'fa-solid');
+                button.classList.add('liked');
+                countSpan.innerText = currentLikes + 1;
+            } else {
+                icon.classList.replace('fa-solid', 'fa-regular');
+                button.classList.remove('liked');
+                countSpan.innerText = currentLikes - 1;
+            }
+        }
+
+        function focusCommentForm() {
+            document.getElementById('username').focus();
+        }
+
+        document.getElementById('comment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const usernameInput = document.getElementById('username');
+            const commentTextInput = document.getElementById('comment-text');
+            const commentsContainer = document.getElementById('comments-container');
+
+            if (usernameInput.value.trim() === "" || commentTextInput.value.trim() === "") {
+                return;
+            }
+
+            const newComment = document.createElement('div');
+            newComment.classList.add('comment-item');
+            
+            newComment.innerHTML = `
+                <strong>${usernameInput.value}:</strong>
+                <p>${commentTextInput.value}</p>
+            `;
+
+            commentsContainer.insertBefore(newComment, commentsContainer.firstChild);
+
+            usernameInput.value = '';
+            commentTextInput.value = '';
+        });
+    </script>
+</body>
+</html>
