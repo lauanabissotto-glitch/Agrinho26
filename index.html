@@ -102,11 +102,23 @@
             }
         }
 
+        /* Área dos Posts em Lista */
+        .posts-section {
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+        }
+
         .post-card {
             background: white;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+
+        .post-card:hover {
+            transform: translateY(-2px);
         }
 
         .post-thumb {
@@ -126,11 +138,14 @@
             border-radius: 4px;
             font-size: 0.85rem;
             font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
         }
 
         .post-content h2 {
-            margin: 15px 0;
+            margin-bottom: 15px;
             font-size: 1.8rem;
+            color: #1b5e20;
         }
 
         .post-actions {
@@ -162,12 +177,19 @@
             font-weight: bold;
         }
 
+        /* Sidebar e Widgets */
         .widget {
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             margin-bottom: 20px;
+            position: sticky;
+            top: 90px;
+        }
+
+        .widget:nth-child(2) {
+            position: static;
         }
 
         .widget h3 {
@@ -222,7 +244,7 @@
             color: white;
             text-align: center;
             padding: 20px 0;
-            margin-top: auto;
+            margin-top: 40px;
         }
     </style>
 </head>
@@ -253,12 +275,13 @@
     <main class="container grid-container">
         
         <section class="posts-section">
+            
             <article class="post-card">
-                <img src="https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=800&q=80" alt="Agricultura" class="post-thumb">
+                <img src="https://images.unsplash.com/photo-1592417817098-8f3d6eb19675?auto=format&fit=crop&w=800&q=80" alt="Agricultura de Precisão" class="post-thumb">
                 <div class="post-content">
                     <span class="category">Tecnologia no Campo</span>
                     <h2>Como a Agricultura de Precisão reduz o impacto ambiental</h2>
-                    <p>O uso de drones, sensores e inteligência artificial no manejo de lavouras permite a aplicação exata de insumos, evitando desperdícios e protegendo o solo e os lençóis freáticos.</p>
+                    <p>O uso de drones, sensores e inteligência artificial no manejo de lavouras permite a aplicação exata de insumos, evitando desperdícios e protegendo o solo e os lençóis freáticos de contaminações desnecessárias.</p>
                     
                     <div class="post-actions">
                         <button class="btn-action like-btn" onclick="toggleLike(this)">
@@ -270,6 +293,79 @@
                     </div>
                 </div>
             </article>
+
+            <article class="post-card">
+                <img src="https://images.unsplash.com/photo-1530595467537-0b5996c41f2d?auto=format&fit=crop&w=800&q=80" alt="Manejo Biológico" class="post-thumb">
+                <div class="post-content">
+                    <span class="category">Defensivos Naturais</span>
+                    <h2>Manejo Biológico: O futuro do controle de pragas no Brasil</h2>
+                    <p>A utilização de inimigos naturais (como insetos benéficos e fungos específicos) para combater lagartas e percevejos está revolucionando o agro. Essa prática reduz drasticamente a dependência de químicos pesados, mantendo o equilíbrio do ecossistema local.</p>
+                    
+                    <div class="post-actions">
+                        <button class="btn-action like-btn" onclick="toggleLike(this)">
+                            <i class="fa-regular fa-heart"></i> <span class="like-count">28</span> Curtidas
+                        </button>
+                        <button class="btn-action" onclick="focusCommentForm()">
+                            <i class="fa-regular fa-comment"></i> Comentar
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=800&q=80" alt="Sistemas Agroflorestais" class="post-thumb">
+                <div class="post-content">
+                    <span class="category">Sustentabilidade</span>
+                    <h2>Sistemas Agroflorestais: Produzir alimentos plantando florestas</h2>
+                    <p>Integrar árvores nativas, pastagens e cultivos agrícolas em um mesmo espaço é a chave para recuperar solos degradados. Além de capturar toneladas de carbono da atmosfera, o sistema protege a biodiversidade e gera múltiplas fontes de renda para o produtor.</p>
+                    
+                    <div class="post-actions">
+                        <button class="btn-action like-btn" onclick="toggleLike(this)">
+                            <i class="fa-regular fa-heart"></i> <span class="like-count">45</span> Curtidas
+                        </button>
+                        <button class="btn-action" onclick="focusCommentForm()">
+                            <i class="fa-regular fa-comment"></i> Comentar
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=800&q=80" alt="Energia Solar no Campo" class="post-thumb">
+                <div class="post-content">
+                    <span class="category">Energia Limpa</span>
+                    <h2>Energia Solar no Campo: Autossuficiência e redução de pegada de carbono</h2>
+                    <p>A instalação de painéis fotovoltaicos em fazendas está crescendo em ritmo acelerado. Além de reduzir os custos operacionais com irrigação e fiação elétrica, o uso do sol como matriz energética torna a produção agropecuária totalmente limpa e renovável.</p>
+                    
+                    <div class="post-actions">
+                        <button class="btn-action like-btn" onclick="toggleLike(this)">
+                            <i class="fa-regular fa-heart"></i> <span class="like-count">31</span> Curtidas
+                        </button>
+                        <button class="btn-action" onclick="focusCommentForm()">
+                            <i class="fa-regular fa-comment"></i> Comentar
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="post-card">
+                <img src="https://images.unsplash.com/photo-1444858291040-58f756a3bdd6?auto=format&fit=crop&w=800&q=80" alt="Crédito de Carbono" class="post-thumb">
+                <div class="post-content">
+                    <span class="category">Economia Verde</span>
+                    <h2>Créditos de Carbono: Como o produtor ganha dinheiro preservando a mata</h2>
+                    <p>O mercado de carbono virou realidade para o produtor brasileiro. Através da conservação de reservas legais e áreas de preservação permanente (APPs), fazendas conseguem certificar e vender créditos para grandes empresas globais, provando que manter a floresta em pé é altamente lucrativo.</p>
+                    
+                    <div class="post-actions">
+                        <button class="btn-action like-btn" onclick="toggleLike(this)">
+                            <i class="fa-regular fa-heart"></i> <span class="like-count">56</span> Curtidas
+                        </button>
+                        <button class="btn-action" onclick="focusCommentForm()">
+                            <i class="fa-regular fa-comment"></i> Comentar
+                        </button>
+                    </div>
+                </div>
+            </article>
+
         </section>
 
         <aside class="sidebar">
